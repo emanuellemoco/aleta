@@ -26,10 +26,10 @@ while(n<104):
 
 
         t_list[i] = t
-        
+
     n+=1
 
-
+print(t_list)
 plt.plot(x,t_list)
 plt.grid()
 plt.show()
