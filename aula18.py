@@ -17,7 +17,7 @@ x = [0,0.05,0.10,0.15,0.20,0.25,0.30,0.35,0.40,0.45,0.50]
 beta=alpha*dT/(dX**2)
 n = 0
 aux = t_list[:]
-while(n<100):
+while(n<104):
 
     for i in range(1,len(t_list)-1):
         
