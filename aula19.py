@@ -39,7 +39,7 @@ def getTemp(m,nn,alpha,dT,dX,dY,tol,t):
                     print("Saiu pela tolerancia")
                     print("Retornou depois de: ",n*dT," segundos")
 
-                    return T_f
+                    #return T_f
         
         T_f = np.copy(T)
         n+=1    
@@ -48,7 +48,7 @@ def getTemp(m,nn,alpha,dT,dX,dY,tol,t):
 
 
 
-results = getTemp(6,6,alpha,dT,dX,dY,tol,10)
+results = getTemp(6,6,alpha,dT,dX,dY,tol,1)
 
 print(results[2][2])
 
