@@ -5,16 +5,28 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt 
 
-dX = 0.05
-dY = 0.05    #m
-dT = 0.01    #s
+dX = 0.1
+dY = 0.1    #m
+dT = 0.001    #s
 
 k = 0.23e3      # W/m.℃ Condutividade térmica:
 cp = 897         # J/kg.℃ Calor específico:  
 ro = 2.7e3   # kg/m³Densidade:
 alpha = k/(ro*cp) #difusividade (depende da condutividade, ro e calor especifico)
 
-
+""" 
+0.04
+0.08
+0.12
+0.16
+0.20
+0.24
+0.28
+0.32
+0.36
+0.40
+ """
+ 
 # t_list = [0,20,20,20,20,20,20,20,20,20,0]
 # x = [0,0.1,0.2,0.3,0.4,0.5]
 
@@ -66,13 +78,14 @@ def getTemp(m,nn,alpha,dT,dX,dY,tol,t):
 
 
 
-results = getTemp(10,10,alpha,dT,dX,dY,tol,10)
-
-for i in range(len(results)):
-    print(results[i][0])
+results = getTemp(5,5,alpha,dT,dX,dY,tol,10)
 
 
-#print(results.round(2))
+#for i in range(len(results)):
+ #   print(results[i][0])
+
+
+print(results.round(2))
 
 plt.imshow(results, cmap='Reds', interpolation='nearest')
 plt.colorbar()
