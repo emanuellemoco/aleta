@@ -26,7 +26,7 @@ def getTemp(m,nn,alpha,dT,dX,dY,tol,t):
     T_f = np.copy(T)
     for j in range(m):
         T[0][j] = 100
-  
+    print(alpha)
     while(n<(t/dT )):
         for i in range(1,m-1):
             for j in range(1,nn-1):
