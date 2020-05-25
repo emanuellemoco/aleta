@@ -143,7 +143,7 @@ def getTemp(T_real,m,alpha,dT,dX,tol,t,borda):
                         erro = np.abs((T[i][j]-T_f[i][j])/T[i][j])
                         lista_erros.append(erro)
             
-            if(np.max(lista_erros)<1e-8):
+            if(np.max(lista_erros)<tol):
                 print("Convergiu após {0} segundos".format(n*dT) )
                 return T
             T_f = np.copy(T)
@@ -180,7 +180,10 @@ up = float(input("Temperatura da borda da cima: "))
 right = float(input("Temperatura da borda da direita: "))
 down = float(input("Temperatura da borda da baixo: "))
 
-
+print("=====================")
+print(alpha)
+print((1/8)*(dXY**2+dXY**2)/alpha)
+print("=====================")
 # pontos = 10
 # t = 10
 # dT = 0.001 
@@ -207,9 +210,9 @@ T = np.full( (pontos, pontos), temperatura)
 #MACHI
 for j in range(pontos):
     T[j][0] = left
-    T[-1][j] = down
     T[j][-1] = right
     T[0][j] = up
+    T[-1][j] = down
 
     
 print(T)
