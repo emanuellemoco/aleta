@@ -9,7 +9,6 @@ import matplotlib.pyplot as plt
 def getTemp(T_real,m,alpha,dT,dX,tol,t,borda):
     beta = alpha * dT
     f_zero = alpha*dT/(dX**2)
-    print("F ZEROOOOOOOOOOOOO", f_zero)
     n = 0
     T = np.copy(T_real)
     T_f = np.copy(T)
@@ -52,16 +51,7 @@ def getTemp(T_real,m,alpha,dT,dX,tol,t,borda):
                     
                     if i == 0:
                         #T[i][j] = (f_zero) * ( 2*T_f[i][1] + T_f[i+1][0] + T_f[i-1][0]) + (1 - 4 * f_zero)* T_f[i][0]
-                        
-                        #print((T_f[i][j+1]+T_f[i][j-1]+2*T_f[i+1][j]))
-                        #print(T_f[i][j+1])
-                        #print(T_f[i][j-1])
-                        #print(T_f[i+1][j])
-                        print( (1 - 4 * f_zero)* T_f[i][j])
-                        print((f_zero) * ( 2*T_f[i][1] + T_f[i+1][0] + T_f[i-1][0]))
-                        T[i][j] = (f_zero) * (T_f[i][j+1]+T_f[i][j-1]+2*T_f[i+1][j]) + (1 - 4 * f_zero)* T_f[i][j]
-                        print("OLA", T[i][j])
-                        
+                        T[i][j] = (f_zero) * (T_f[i][j+1]+T_f[i][j-1]+2*T_f[i+1][j]) + (1 - 4 * f_zero)* T_f[i][0]
                     else:
                         partX = (T_f[i][j+1] - 2*T_f[i][j] + T_f[i][j-1])/(dX**2)
 
@@ -192,7 +182,10 @@ down = float(input("Temperatura da borda da baixo: "))
 
 print("=====================")
 print(alpha)
+algo = (1/8)*(dXY**2+dXY**2)/alpha
 print((1/8)*(dXY**2+dXY**2)/alpha)
+print(algo)
+print"{:.6f}".format(algo)
 print("=====================")
 # pontos = 10
 # t = 10
@@ -218,27 +211,12 @@ T = np.full( (pontos, pontos), temperatura)
 
 ########LEONARDO BABACA NAO ESQUECA #####################################
 #MACHI
-# for j in range(pontos):
-#     T[j][0] = left
-#     T[j][-1] = right
-#     T[0][j] = up
-#     T[-1][j] = down
+for j in range(pontos):
+    T[j][0] = left
+    T[j][-1] = right
+    T[0][j] = up
+    T[-1][j] = down
 
-if borda ==1: #esquerda
-    print("BORDA 1")
-    for j in range(pontos):
-        T[j][0] = left
-        T[j][-1] = right
-        T[0][j] = up
-        T[-1][j] = down
-
-elif borda ==2: #up
-    print("BORDA 2")
-    for j in range(pontos):
-        T[0][j] = up
-        T[j][0] = left
-        T[j][-1] = right
-        T[-1][j] = down
     
 print(T)
 results = getTemp(T,pontos,alpha,dT,dXY,tol,t,borda)
