@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 def getTemp(T_real,m,alpha,dT,dX,tol,t,borda):
     beta = alpha * dT
     f_zero = alpha*dT/(dX**2)
+    print("Fzeroo:", f_zero)
     n = 0
     T = np.copy(T_real)
     T_f = np.copy(T)
@@ -80,7 +81,7 @@ def getTemp(T_real,m,alpha,dT,dX,tol,t,borda):
                     
                     if j == m-1:
                         #T[i][j] = (f_zero) * ( 2*T_f[i][1] + T_f[i+1][0] + T_f[i-1][0]) + (1 - 4 * f_zero)* T_f[i][0]
-                        T[i][j] = (f_zero) *   (2*T_f[i][j-1]+T_f[i+1][j]+T_f[i-1][j]) + (1 - 4 * f_zero)* T_f[i][0]
+                        T[i][j] = (f_zero) *   (2*T_f[i][j-1]+T_f[i+1][j]+T_f[i-1][j]) + (1 - 4 * f_zero)* T_f[i][j]
                     else:
                         partX = (T_f[i][j+1] - 2*T_f[i][j] + T_f[i][j-1])/(dX**2)
 
@@ -103,12 +104,13 @@ def getTemp(T_real,m,alpha,dT,dX,tol,t,borda):
 
     if borda==4: #inferior isolado
         while(n<(t/dT)):
+            print("entrei pelo menos 1x")
             lista_erros = []        
-            for i in range(1,m-1):
-                for j in range(1,m-2):
+            for i in range(1,m):
+                for j in range(1,m-1):
                     
-                    if i == m:
-                        T[i][j] = (f_zero) *   (T_f[i][j+1] + T_f[i][j-1] + 2* T_f[i-1][j]) + (1 - 4 * f_zero)* T_f[i][0]
+                    if i == m-1:
+                        T[i][j] = (f_zero) *   (T_f[i][j+1] + T_f[i][j-1] + 2* T_f[i-1][j]) + (1 - 4 * f_zero)* T_f[i][j]
                     else:
                         partX = (T_f[i][j+1] - 2*T_f[i][j] + T_f[i][j-1])/(dX**2)
 
@@ -182,10 +184,7 @@ down = float(input("Temperatura da borda da baixo: "))
 
 print("=====================")
 print(alpha)
-algo = (1/8)*(dXY**2+dXY**2)/alpha
 print((1/8)*(dXY**2+dXY**2)/alpha)
-print(algo)
-print"{:.6f}".format(algo)
 print("=====================")
 # pontos = 10
 # t = 10
@@ -212,10 +211,10 @@ T = np.full( (pontos, pontos), temperatura)
 ########LEONARDO BABACA NAO ESQUECA #####################################
 #MACHI
 for j in range(pontos):
+    T[-1][j] = down
     T[j][0] = left
     T[j][-1] = right
     T[0][j] = up
-    T[-1][j] = down
 
     
 print(T)
