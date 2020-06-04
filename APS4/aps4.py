@@ -11,7 +11,7 @@ def burger(m,n,T,t,dT,dX,dY, alpha, Q, K,pos_x,pos_y):
     C_temp = np.copy(C)
     q = Q/(dX*dY)
     print(q)
-    while(count-1<t/dT):
+    while(count-1<2):
         for i in range(1,m-1):
             for j in range(1,n-1):
                 v = alpha * math.sin(math.pi*j*dX/5)
@@ -41,13 +41,13 @@ def burger(m,n,T,t,dT,dX,dY, alpha, Q, K,pos_x,pos_y):
         C_temp = np.copy(C)
     print("Retornou depois de {0} segundos.".format(count*dT))
     return C
-K = 1       #m²/s
+K = 1      #m²/s
 alpha = 1   #m/s
 T = 3       #s tempo despejo
 Q = 100     #kg/ms
 Lx = 30     #m
 Ly = 20     #m
-a = 0.5#round(1/1.4)   #round(1/1.4,2)
+a =  0.5    #round(1/1.4)   #round(1/1.4,2)
 b = 60/6
 dX = 0.5  #
 dY = 0.5  #
@@ -62,11 +62,11 @@ pontos_y = int((Ly / dY)) + 1
 dT = ((1/(4*K)) * (dX * dY)) 
 T_total = 10 * T  #tempo total
 
-print(dT)
 results = burger(pontos_y,pontos_x,T,T_total,dT,dX,dY,alpha,Q,K,index_a, index_b)
-print(results[40][40])
+#print(results[40][40])
 
 plt.imshow(results, cmap='jet', interpolation='nearest')
+plt.title("Resultado após duas iterações")
 plt.gca().invert_yaxis()
 plt.colorbar()
 plt.show()
