@@ -49,7 +49,7 @@ T = 3       #s tempo despejo
 Q = 100     #kg/ms
 Lx = 30     #m
 Ly = 20     #m
-a = 1/1.4+1    #round(1/1.4,2)
+a = 1/1.4 +1  #round(1/1.4,2)
 b = 60/(5+1)
 dX = 0.5  #
 dY = 0.5  #
@@ -61,13 +61,14 @@ index_b = int(b/dY)
 print(index_a,index_b)
 pontos_x = int((Lx / dX)) + 1
 pontos_y = int((Ly / dY)) + 1
-dT = 0.01#((1/(4*K)) * (dX * dY))
-T_total = 10 * T  #tempo total
+dT = ((1/(4*K)) * (dX * dY))
+T_total = T  #tempo total
 print(dT)
 results = burger(pontos_y,pontos_x,T,T_total,dT,dX,dY,alpha,Q,K,index_a, index_b)
 
 plt.imshow(results, cmap='ocean', interpolation='nearest')
-plt.title("Resultado após {0} segundos".format(T_total))
+plt.title("Análise de bordas ")
+#plt.title("Resultado após {0} segundos".format(T_total))
 plt.gca().invert_yaxis()
 plt.colorbar()
 plt.show()
